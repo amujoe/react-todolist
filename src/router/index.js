@@ -1,7 +1,7 @@
 // src/routes.js
-import LoginPage from "../pages/common/login";
-import TodoListPage from "../pages/todo/list";
-import TodoEditPage from "../pages/todo/edit";
+import LoginPage from "../pages/common/login/login";
+import TodoListPage from "../pages/todo/list/list";
+import TodoEditPage from "../pages/todo/edit/edit";
 
 const routes = [
   {

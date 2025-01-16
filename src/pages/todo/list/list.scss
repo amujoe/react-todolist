@@ -1,0 +1,38 @@
+.todo-page {
+    min-height: 100vh;
+    // background: #fffced;
+    .main-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 1420px;
+        margin: 0 auto;
+        .main-box-item {
+            width: 700px;
+            height: 300px;
+            box-sizing: border-box;
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+
+        .lt-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px 0;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+        }
+    }
+}

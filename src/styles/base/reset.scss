@@ -1,0 +1,81 @@
+ul,li {list-style: none;}// 1. 去除所有元素的外边距和内边距
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// 2. 去除列表和链接的默认样式
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// 3. 让图片最大宽度为100%以防止图片溢出
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// 4. 设置字体和行高，确保文字统一
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// 5. 清除表单控件的样式
+input,
+textarea,
+button,
+select {
+    background: none;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+}
+
+// 6. 使所有元素的边框默认透明，避免浏览器显示默认边框
+button {
+    cursor: pointer;
+}
+
+// 7. 优化表格表现
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+// 8. 设置全局的字体和文本相关样式
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+// 9. 隐藏文本选择
+::selection {
+  background: #b3d4fc;
+  color: #000;
+}
+
+// 10. 确保所有元素的行高一致
+* {
+    line-height: 1.5;
+}
