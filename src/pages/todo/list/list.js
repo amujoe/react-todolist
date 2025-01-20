@@ -1,4 +1,5 @@
 import React, { useState }  from "react";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import "./list.scss";
 
@@ -41,6 +42,44 @@ const ListPage = () => {
         "尝试不常用的App",
         "整理书架"
     ];
+
+    const sortList = [
+        { id: '11', content: '整理桌面上的文件' },
+        { id: '12', content: '整理社交媒体账户' },
+        { id: '13', content: '阅读不相关的新闻' },
+        { id: '14', content: '看电视休闲娱乐' },
+        { id: '15', content: '尝试不常用的App' },
+        { id: '16', content: '整理书架' }
+    ];
+
+    // 初始数据
+    const initialItems = [
+        { id: '1', content: 'Item 1' },
+        { id: '2', content: 'Item 2' },
+        { id: '3', content: 'Item 3' }
+    ];
+    
+    const [items, setItems] = useState(initialItems);
+
+    // 当拖拽结束时调用的函数
+    const onDragEnd = (result) => {
+        const { destination, source } = result;
+
+        if (!destination) {
+            return;
+        }
+
+        // 如果拖拽源和目标位置相同
+        if (destination.index === source.index) {
+            return;
+        }
+
+        const reorderedItems = Array.from(items);
+        const [movedItem] = reorderedItems.splice(source.index, 1);  // 移除拖动的元素
+        reorderedItems.splice(destination.index, 0, movedItem); // 插入拖动的元素
+
+        setItems(reorderedItems); // 更新状态
+    }
 
     return (
         <div className="todo-page">
@@ -90,6 +129,37 @@ const ListPage = () => {
                     }
                 </div>
 
+                {/* 排序 */}
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="droppable" key="droppable">
+                        {(provided) => (
+                        <div ref={provided.innerRef} {...provided.droppableProps}>
+                            {items.map((item, index) => (
+                            <Draggable key={item.id} draggableId={item.id} index={index}>
+                                {(provided) => (
+                                <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={{
+                                    ...provided.draggableProps.style,
+                                    marginBottom: '8px',
+                                    padding: '16px',
+                                    backgroundColor: '#fff',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '4px',
+                                    }}
+                                >
+                                    {item.content}
+                                </div>
+                                )}
+                            </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
         </div>
     );
